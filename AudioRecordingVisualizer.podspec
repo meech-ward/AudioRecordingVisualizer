@@ -31,7 +31,7 @@ TODO: Add long description of the pod here.
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'AudioRecordingVisualizer/Classes/**/*'
-  
+
   # s.resource_bundles = {
   #   'AudioRecordingVisualizer' => ['AudioRecordingVisualizer/Assets/*.png']
   # }
