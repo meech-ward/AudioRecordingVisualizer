@@ -28,15 +28,18 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/05394b3722153a5cad3c776b90c433e6c1f36095/AudioRecordingVisualizer.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '10.0'
 
   s.source_files = 'AudioRecordingVisualizer/Classes/**/*'
+
+  # , 'AudioKit.framework/Headers/*.h' , 'AudioKit.framework/Headers/*.hpp', 'AudioKitUI.framework/Headers/*.h'
+  # s.public_header_files = 'AudioKit.framework/Headers/*.h', 'AudioKitUI.framework/Headers/*.h'
 
   # s.resource_bundles = {
   #   'AudioRecordingVisualizer' => ['AudioRecordingVisualizer/Assets/*.png']
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  # s.frameworks = 'AudioKitUI'
+  s.dependency 'AudioKit', '~> 4.0.4'
 end

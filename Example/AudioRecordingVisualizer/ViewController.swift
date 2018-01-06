@@ -7,13 +7,53 @@
 //
 
 import UIKit
+import AudioRecordingVisualizer
 
 class ViewController: UIViewController {
-
+  
+  private var audioRecordingView: AudioRecordingView!
+  private var audioKitMicrophoneTracker: AudioKitMicorophoneTracker!
+  private var micHelper: AKToEZMicHelper!
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+      
+      setupRecordingView()
+      
+      AudioSettings.setup()
+      AudioSettings.requestPermission { success in
+        guard success else {
+          print("No permission to play")
+          return
+        }
+        
+        self.startRecordingView()
+      }
     }
+  
+  private func setupRecordingView() {
+    audioRecordingView = AudioRecordingView()
+    audioRecordingView.translatesAutoresizingMaskIntoConstraints = false
+    view.addSubview(audioRecordingView)
+    audioRecordingView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+    audioRecordingView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+    audioRecordingView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+    audioRecordingView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+  }
+  
+  private func startRecordingView() {
+    self.audioKitMicrophoneTracker = AudioKitMicorophoneTracker()
+    self.audioKitMicrophoneTracker.start()
+    
+    self.audioRecordingView.start()
+    
+    self.micHelper = AKToEZMicHelper(self.audioKitMicrophoneTracker.mic, closure:{ [unowned self] buffer, bufferSize in
+      OperationQueue.main.addOperation {
+        self.audioRecordingView.update(buffer: buffer, bufferSize: bufferSize)
+      }
+    })
+  }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
