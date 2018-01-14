@@ -1,0 +1,21 @@
+PODS:
+  - AudioKit (4.0.4):
+    - AudioKit/UI (= 4.0.4)
+  - AudioKit/UI (4.0.4)
+  - AudioRecordingVisualizer (0.1.0):
+    - AudioKit (~> 4.0.4)
+
+DEPENDENCIES:
+  - AudioRecordingVisualizer (from `../`)
+
+EXTERNAL SOURCES:
+  AudioRecordingVisualizer:
+    :path: ../
+
+SPEC CHECKSUMS:
+  AudioKit: 647145c0462dc9dc8a8582998cd6db5f2e1ea848
+  AudioRecordingVisualizer: 968e95c29f469a49b933fc19bfd275a9524666e4
+
+PODFILE CHECKSUM: be6a9be9d6872c888130ee25d850bbe62c6dff7a
+
+COCOAPODS: 1.3.1

@@ -1,0 +1,6 @@
+framework module AudioRecordingVisualizer {
+  umbrella header "AudioRecordingVisualizer-umbrella.h"
+
+  export *
+  module * { export * }
+}
