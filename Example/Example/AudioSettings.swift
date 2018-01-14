@@ -7,30 +7,30 @@
 //
 
 import Foundation
-import AudioKit
+//import AudioKit
 import AVFoundation
 
 struct AudioSettings {
-    
+  
     static var recordingSession = AVAudioSession.sharedInstance()
-    
+  
     static func setup() {
-        // Clean tempFiles !
-        AKAudioFile.cleanTempDirectory()
-        
-//        AKSettings.bufferLength = .medium
-
-        do {
-            try AKSettings.setSession(category: .playAndRecord, with: .allowBluetoothA2DP)
-        } catch {
-            AKLog("Could not set session category.")
-        }
-        
-        AKSettings.defaultToSpeaker = true
+//        // Clean tempFiles !
+//        AKAudioFile.cleanTempDirectory()
+//      
+////        AKSettings.bufferLength = .medium
+//
+//        do {
+//            try AKSettings.setSession(category: .playAndRecord, with: .allowBluetoothA2DP)
+//        } catch {
+//            AKLog("Could not set session category.")
+//        }
+//      
+//        AKSettings.defaultToSpeaker = true
     }
-    
+  
     static func requestPermission(completion: @escaping (Bool) -> (Void)) {
-            
+      
         do {
             try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
             try recordingSession.setActive(true)
@@ -38,9 +38,9 @@ struct AudioSettings {
             print("Failed??? \(error)")
             completion(false)
         }
-        
+      
         let currentPermission = recordingSession.recordPermission()
-        
+      
         if currentPermission == .granted {
             completion(true)
             return
@@ -49,12 +49,13 @@ struct AudioSettings {
             completion(false)
             return
         }
-        
+      
         recordingSession.requestRecordPermission() { allowed in // [unowned self] allowed in
             DispatchQueue.main.async {
                 completion(allowed)
             }
         }
-        
+      
     }
 }
+
